@@ -137,11 +137,11 @@ class RecursiveSolution {
     // without memoization, we see that we revisit old nodes multiple times, so this will
     // take exponential time
 
-    if (n == 1) {
+    if (n <= 1) {
       return 1;
     }
 
-    if (m == 1) {
+    if (m <= 1) {
       return 1;
     }
 
