@@ -70,6 +70,11 @@ class RecursiveSolution {
 
     // the terminating condition is when a % b is 0, meaning that a is divisible by
     // b
+
+    if (x2 == 0) {
+      return x1;
+    }
+
     if (x1 % x2 == 0) {
       return x2;
     }
@@ -119,7 +124,7 @@ class RecursiveSolution {
   }
 
   public static int countUniquePaths(int n, int m) {
-    // 1.g. 
+    // 1.g.
     // if we write an algorithm that traverses it explicitly, we branch it into 2,
     // that is, we either explore the right side, and then count the number of
     // possible paths from there to the end, and then explore downwards and do the
@@ -127,14 +132,15 @@ class RecursiveSolution {
 
     // notice then we perform calls as such:
     // * -> * -> * -> *
-    // |    |    |
-    // v    v    v
+    // | | |
+    // v v v
     // * -> * -> * -> *
-    // |    |    |
-    // v    v    v
-    // *    *    *    *
+    // | | |
+    // v v v
+    // * * * *
 
-    // without memoization, we see that we revisit old nodes multiple times, so this will
+    // without memoization, we see that we revisit old nodes multiple times, so this
+    // will
     // take exponential time
 
     if (n <= 1) {

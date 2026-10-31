@@ -72,6 +72,9 @@ class IterativeSolution {
     // because it's similar to the recursive process
     int a = Math.max(x1, x2);
     int b = Math.min(x1, x2);
+    if (b == 0) {
+      return a;
+    }
     while (a % b != 0) {
       int tmp = b;
       b = a % b;
@@ -81,12 +84,27 @@ class IterativeSolution {
   }
 
   public static int countUniquePaths(int n, int m) {
-    // 1.g. This is a counting problem, we must make (n - 1)*(m - 1) moves to get to our destination, as such, we can encode
+    // 1.g. This is a counting problem, we must make (n - 1)*(m - 1) moves to get to
+    // our destination, as such, we can encode
     // our possible moves as a string like:
     // ddd...dddrrrr...rrrr
     // where we have n - 1 amount of d moves, and m - 1 amount of r moves
-    // thus, the different number of unique paths will be the possible permutations ((n + m - 2)!)/((n - 1)! * (m - 1)!)
+    // thus, the different number of unique paths will be the possible permutations
+    // ((n + m - 2)!)/((n - 1)! * (m - 1)!)
     // this will take O(n + m) time because our factorial function takes O(n) time
-    return fact(n + m - 2) / (fact(n - 1) * fact(m - 1));
+
+    int a = Math.max(n - 1, m - 1);
+    int b = Math.min(n - 1, m - 1);
+    long prodAToAPlusB = 1;
+    for (int i = a + 1; i <= (a + b); i++) {
+      prodAToAPlusB *= i;
+    }
+
+    long factB = 1;
+    for (int i = 1; i <= b; i++) {
+      factB *= i;
+    }
+
+    return (int) (prodAToAPlusB / factB);
   }
 }
